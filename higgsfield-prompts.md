@@ -15,17 +15,17 @@ Every slot in `index.html` looks like this:
 ```html
 <div class="hs-image" data-slot="DZ-12-A" data-slide="12" data-aspect="16:9"
      data-higgsfield-prompt="…full prompt…">
-  <img src="placeholder.svg" alt="[HIGGSFIELD PLACEHOLDER — see data-higgsfield-prompt]" loading="lazy">
+  <img src="placeholder.svg" data-placeholder="1" alt="[HIGGSFIELD PLACEHOLDER — see data-higgsfield-prompt]" loading="lazy">
 </div>
 ```
 
-To fill it: replace `placeholder.svg` with your generated file, e.g.
+To fill it, replace the whole `<img>` line — point `src` at your generated file and **drop the `data-placeholder` attribute**:
 
 ```html
 <img src="images/DZ-12-A.jpg" alt="Sulagna at the window" loading="lazy">
 ```
 
-The runtime detects any `src` that is not `placeholder.svg`, hides the pastel placeholder block and its label automatically, and lets the photograph run full-bleed inside the crop. Nothing else needs changing.
+That attribute is the "still empty" marker. Once it is gone, the runtime hides the pastel placeholder block and its label automatically and lets the photograph run full-bleed inside the crop. Nothing else needs changing.
 
 Suggested naming: `images/DZ-<slide>-<letter>.jpg` — it matches the `data-slot` value exactly.
 

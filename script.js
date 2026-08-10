@@ -74,8 +74,10 @@
   var slots = Array.prototype.slice.call(document.querySelectorAll('.hs-image'));
   slots.forEach(function (slot) {
     var img = slot.querySelector('img');
-    var real = img && img.getAttribute('src') && img.getAttribute('src').indexOf('placeholder.svg') === -1;
-    if (real) { slot.classList.add('has-photo'); return; }
+    var src = img && img.getAttribute('src');
+    var stillEmpty = !img || img.hasAttribute('data-placeholder') ||
+                     !src || src.indexOf('placeholder.svg') !== -1;
+    if (!stillEmpty) { slot.classList.add('has-photo'); return; }
 
     var label = document.createElement('span');
     label.className = 'hs-label';
